@@ -34,19 +34,33 @@ def leave2(event):
 def entergame(event):
     maingame()
 
+def choicemaker(user , pc):
+    if user == 'Rock' and pc == 'Paper':
+        return 1
+    elif user == 'Rock' and pc == 'Scissor':
+        return 2
 
-# Maingame Function will bring a new window of GUI and will provide a platform to play RPS:
-def maingame():
-    global userscore, pcscore
-    global nameinp
-    global rock, paper, scissor
+    elif user == 'Paper' and pc == 'Scissor':
+        return 3
+
+    elif user == 'Paper' and pc == 'Rock':
+        return 4
+
+    elif user == 'Scissor' and pc == 'Rock':
+        return 5
+    elif user == 'Scissor' and pc == 'Paper':
+        return 6
+
+    elif user == pc:
+        return -1
+
+def initilizestate():
     root.geometry('650x450')
     name.destroy()
     f1.destroy()
     inpname.destroy()
     sub.destroy()
-
-    # score:
+def creategame():
     L2 = Label(text=f"{nameinp.get()} Score: {userscore}", bg='#4834DF', fg='#ffffff', borderwidth=5, relief=RAISED,
                font='Rockwell 13 bold', padx=4, pady=2)
     L2.grid(row=5, column=0, pady=15)
@@ -54,6 +68,16 @@ def maingame():
                font='Rockwell 13 bold', padx=4, pady=2)
     L3.grid(row=6, column=0, pady=15)
 
+
+# Maingame Function will bring a new window of GUI and will provide a platform to play RPS:
+def maingame():
+    global userscore, pcscore
+    global nameinp
+    global rock, paper, scissor
+    initilizestate()
+
+    # score:
+    creategame()
     # Click Function Main Logic:
     def click(event):
         global userscore, pcscore  # These variable will get or count the scores of user and pc
@@ -74,41 +98,40 @@ def maingame():
         pcchose.grid(row=5, column=1, pady=15)
 
         # Actual Game Logic
-        if val == 'Rock' and pc_opt == 'Paper':  # val means what user chose and pc_opt means what pc chose or opted
+        if choicemaker(val , pc_opt) == 1:  # val means what user chose and pc_opt means what pc chose or opted
             L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             pcscore += 1
 
-        elif val == 'Rock' and pc_opt == 'Scissor':
+        elif choicemaker(val , pc_opt) == 2:
             L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             userscore += 1
 
-        elif val == 'Paper' and pc_opt == 'Scissor':
+        elif choicemaker(val , pc_opt) == 3:
             L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             pcscore += 1
 
-        elif val == 'Paper' and pc_opt == 'Rock':
+        elif choicemaker(val , pc_opt) == 4:
             L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             userscore += 1
 
-        elif val == 'Scissor' and pc_opt == 'Rock':
+        elif choicemaker(val , pc_opt) == 5:
             L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             pcscore += 1
 
-        elif val == 'Scissor' and pc_opt == 'Paper':
+        elif choicemaker(val , pc_opt) == 6:
             L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
             userscore += 1
 
-        elif val == pc_opt:
+        elif choicemaker(val , pc_opt) == -1:
             L1 = Label(text=f"It's A Tie", font='lucida 15 bold', bg='black', fg='gold')
             L1.grid(row=6, column=1, pady=15)
-            userscore += 1
-            pcscore += 1
+
         maingame()
 
     # (Layout of RPS Game)
@@ -157,9 +180,9 @@ root = Tk()
 root.title('Rock Paper Scissor')
 # root.wm_iconbitmap("game.ico")
 # Geometry or dimensions of game window
-root.geometry('650x450')
-root.maxsize(650, 450)
-root.minsize(650, 450)
+root.geometry('1000x450')
+root.maxsize(1000, 450)
+root.minsize(1000, 450)
 
 # Defining some widgets to use them in diff functions
 rock = Button()
@@ -171,13 +194,19 @@ L1 = Label()  # This Label will show the who won pc or user
 pcchose = Label()  # This Label will show what pc opted or chose
 
 # Frame for first window of game
+
+def enteringframe():
+    pass
+
+
 f1 = Frame(root)
 img = Image.open('RockPaperScissor.jpeg')
-img = img.resize((650, 450), Image.ANTIALIAS)
+img = img.resize((1000, 450))
 pic = ImageTk.PhotoImage(img)
 Lab = Label(f1, image=pic)
 Lab.pack()
 f1.pack()
+
 
 # Create some widgets and placed them above the image that's why used place geometry method
 name = Label(root, text='Enter Your Name :', font='arial 15 bold')
