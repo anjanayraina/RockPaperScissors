@@ -189,10 +189,15 @@ def maingame():
 
 
     # Close
-    def closeButtons():
-        btnclose = Button(text='Keep Playing', command=root.destroy, bg='green', font='arial 20 bold')
-        btnclose.place(x=380, y=350)
-    closeButtons()
+    def keepPlayingButton():
+        btnclose = Button(text='Keep Playing', bg='green', font='arial 10 bold')
+        btnclose.place(x=350, y=350)
+    keepPlayingButton()
+    def closeButton():
+        btnclose = Button(text='Stop Playing', command=root.destroy, bg='green', font='arial 10 bold')
+        btnclose.place(x=500, y=350)
+    closeButton()
+
 
 
 
@@ -224,6 +229,7 @@ def enteringframe():
 
 
 f1 = Frame(root)
+
 img = Image.open('main.webp')
 img = img.resize((900, 400))
 pic = ImageTk.PhotoImage(img)
