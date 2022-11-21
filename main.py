@@ -31,7 +31,7 @@ def leave2(event):
     scissor.config(bg='white', fg='black')
 
 
-def entergame(event):
+def entergame():
     maingame()
 
 def choicemaker(user , pc):
@@ -144,33 +144,45 @@ def maingame():
     playertwo.grid(row=1, column=1)
 
     # Player 1 Buttons
-    rock = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7)
-    rock.grid(row=2, column=0, pady=15)
-    rock.bind('<Enter>', enter)
-    rock.bind('<Leave>', leave)
-    rock.bind('<Button-1>', click)
-    paper = Button(text='Paper', font='comicsansms 14 bold', height=1, width=7)
-    paper.grid(row=3, column=0)
-    paper.bind('<Enter>', enter1)
-    paper.bind('<Leave>', leave1)
-    paper.bind('<Button-1>', click)
-    scissor = Button(text='Scissor', font='comicsansms 14 bold', height=1, width=7)
-    scissor.grid(row=4, column=0, pady=15)
-    scissor.bind('<Enter>', enter2)
-    scissor.bind('<Leave>', leave2)
-    scissor.bind('<Button-1>', click)
+
+    def player1Buttons():
+        rock = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7)
+        rock.grid(row=2, column=0, pady=15)
+        rock.bind('<Enter>', enter)
+        rock.bind('<Leave>', leave)
+        rock.bind('<Button-1>', click)
+        paper = Button(text='Paper', font='comicsansms 14 bold', height=1, width=7)
+        paper.grid(row=3, column=0)
+        paper.bind('<Enter>', enter1)
+        paper.bind('<Leave>', leave1)
+        paper.bind('<Button-1>', click)
+        scissor = Button(text='Scissor', font='comicsansms 14 bold', height=1, width=7)
+        scissor.grid(row=4, column=0, pady=15)
+        scissor.bind('<Enter>', enter2)
+        scissor.bind('<Leave>', leave2)
+        scissor.bind('<Button-1>', click)
+    player1Buttons()
+
 
     # Player 2:Computer Buttons
-    rock1 = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7)
-    rock1.grid(row=2, column=1, pady=15)
-    paper1 = Button(text='Paper', font='comicsansms 14 bold', height=1, width=7)
-    paper1.grid(row=3, column=1)
-    scissor1 = Button(text='Scissor', font='comicsansms 14 bold', height=1, width=7)
-    scissor1.grid(row=4, column=1, pady=15)
+    def computerButtons():
+        rock1 = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7)
+        rock1.grid(row=2, column=1, pady=15)
+        paper1 = Button(text='Paper', font='comicsansms 14 bold', height=1, width=7)
+        paper1.grid(row=3, column=1)
+        scissor1 = Button(text='Scissor', font='comicsansms 14 bold', height=1, width=7)
+        scissor1.grid(row=4, column=1, pady=15)
+    computerButtons()
+
+
 
     # Close
-    btnclose = Button(text='Close Game', command=root.destroy, bg='green', font='arial 10 bold')
-    btnclose.place(x=300, y=410)
+    def closeButtons():
+        btnclose = Button(text='Close Game', command=root.destroy, bg='green', font='arial 10 bold')
+        btnclose.place(x=300, y=410)
+    closeButtons()
+
+
 
 
 ''' GUI Program Starting '''
@@ -209,15 +221,15 @@ f1.pack()
 
 
 # Create some widgets and placed them above the image that's why used place geometry method
-name = Label(root, text='Enter Your Name :', font='arial 15 bold')
-name.place(x=262, y=20)
+name = Label(root, text='Please Enter Your Name ', font='arial 15 bold')
+name.place(x=390, y=20)
 nameinp = StringVar()  # This variable will store the name of user
 inpname = Entry(root, textvar=nameinp, font='arial 10 bold')
 inpname.bind('<Return>',
              entergame)  # We binded Return event with inpname entry widget i.e. if enter key is pressed then entergame function will be called
-inpname.place(x=275, y=60)
+inpname.place(x=435, y=60)
 
 sub = Button(root, text="Let's Play", font='lucida 10 bold', bg='black', fg='white', command=maingame)
-sub.place(x=305, y=88)
+sub.place(x=475, y=88)
 
 root.mainloop()
