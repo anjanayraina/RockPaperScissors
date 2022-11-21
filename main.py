@@ -67,6 +67,51 @@ def creategame():
     L3 = Label(text=f"PC Score: {pcscore}", bg='#4834DF', fg='white', borderwidth=5, relief=RAISED,
                font='Rockwell 13 bold', padx=4, pady=2)
     L3.grid(row=6, column=0, pady=15)
+def getRandomInt():
+    return random.randint(0,2)
+def getRandomchoice():
+    l1 = ['Rock', 'Paper', 'Scissor']
+    return l1[getRandomInt()]
+
+
+def playGame(val , pc_opt):
+    global userscore
+    global pcscore
+    global L1
+
+    if choicemaker(val, pc_opt) == 1:  # val means what user chose and pc_opt means what pc chose or opted
+        L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        pcscore += 1
+
+    elif choicemaker(val, pc_opt) == 2:
+        L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        userscore += 1
+
+    elif choicemaker(val, pc_opt) == 3:
+        L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        pcscore += 1
+
+    elif choicemaker(val, pc_opt) == 4:
+        L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        userscore += 1
+
+    elif choicemaker(val, pc_opt) == 5:
+        L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        pcscore += 1
+
+    elif choicemaker(val, pc_opt) == 6:
+        L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
+        userscore += 1
+
+    elif choicemaker(val, pc_opt) == -1:
+        L1 = Label(text=f"It's A Tie", font='lucida 15 bold', bg='black', fg='gold')
+        L1.grid(row=6, column=1, pady=15)
 
 
 # Maingame Function will bring a new window of GUI and will provide a platform to play RPS:
@@ -89,54 +134,21 @@ def maingame():
         val = event.widget.cget('text')  # This command will take the text of button
 
         # PC Logic (Pc will choose something randomly)
-        x = random.randint(0, 2)
-        l1 = ['Rock', 'Paper', 'Scissor']
-        pc_opt = l1[x]  # PC Option
+
+
+        pc_opt = getRandomchoice() # PC Option
 
         # PC OPT (what PC opted will be shown as a label by this command):
-        pcchose = Label(text=f'PC Opted: {pc_opt}', font='lucida 15 bold', bg='black', fg='red')
+        pcchose = Label(text=f'PC Chose : {pc_opt}', font='lucida 15 bold', bg='black', fg='red')
         pcchose.grid(row=5, column=1, pady=15)
 
         # Actual Game Logic
-        if choicemaker(val , pc_opt) == 1:  # val means what user chose and pc_opt means what pc chose or opted
-            L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            pcscore += 1
-
-        elif choicemaker(val , pc_opt) == 2:
-            L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            userscore += 1
-
-        elif choicemaker(val , pc_opt) == 3:
-            L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            pcscore += 1
-
-        elif choicemaker(val , pc_opt) == 4:
-            L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            userscore += 1
-
-        elif choicemaker(val , pc_opt) == 5:
-            L1 = Label(text='PC Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            pcscore += 1
-
-        elif choicemaker(val , pc_opt) == 6:
-            L1 = Label(text=f'{nameinp.get()} Won', font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-            userscore += 1
-
-        elif choicemaker(val , pc_opt) == -1:
-            L1 = Label(text=f"It's A Tie", font='lucida 15 bold', bg='black', fg='gold')
-            L1.grid(row=6, column=1, pady=15)
-
+        playGame(val , pc_opt)
         maingame()
 
     # (Layout of RPS Game)
 
-    head = Label(text='Rock Paper Scissor', font='arial 35 bold', bg='black', fg='white')
+    head = Label(text='Rock Paper Scissor Game', font='arial 45 bold', bg='gold', fg='white')
     head.grid(columnspan=2, row=0, ipadx=70, padx=33, pady=10)
     playerone = Label(text=f'Player 1 : {nameinp.get()}', font='lucida 16')
     playerone.grid(row=1, column=0)
@@ -178,8 +190,8 @@ def maingame():
 
     # Close
     def closeButtons():
-        btnclose = Button(text='Close Game', command=root.destroy, bg='green', font='arial 10 bold')
-        btnclose.place(x=300, y=410)
+        btnclose = Button(text='Keep Playing', command=root.destroy, bg='green', font='arial 20 bold')
+        btnclose.place(x=380, y=350)
     closeButtons()
 
 
@@ -212,19 +224,20 @@ def enteringframe():
 
 
 f1 = Frame(root)
-img = Image.open('RockPaperScissor.jpeg')
-img = img.resize((1000, 450))
+img = Image.open('main.webp')
+img = img.resize((900, 400))
 pic = ImageTk.PhotoImage(img)
 Lab = Label(f1, image=pic)
 Lab.pack()
 f1.pack()
+rockImage = Image.open('rockImage.png')
 
 
 # Create some widgets and placed them above the image that's why used place geometry method
-name = Label(root, text='Please Enter Your Name ', font='arial 15 bold')
-name.place(x=390, y=20)
+name = Label(root, text='What do you want to be called in this game', font='arial 15 bold')
+name.place(x=300, y=20)
 nameinp = StringVar()  # This variable will store the name of user
-inpname = Entry(root, textvar=nameinp, font='arial 10 bold')
+inpname = Entry(root, textvar=nameinp, font='arial 10')
 inpname.bind('<Return>',
              entergame)  # We binded Return event with inpname entry widget i.e. if enter key is pressed then entergame function will be called
 inpname.place(x=435, y=60)
