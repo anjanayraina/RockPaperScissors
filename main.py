@@ -228,7 +228,8 @@ pcchose = Label()  # This Label will show what pc opted or chose
 
 def enteringframe():
     pass
-
+def newEnterGame(e):
+    maingame()
 
 frame1 = Frame(root)
 
@@ -252,5 +253,5 @@ inputtedName.place(x=435, y=60)
 
 mainFrame = Button(root, text="Let's Play", font='lucida 10 bold', bg='black', fg='white', command=maingame)
 mainFrame.place(x=475, y=88)
-
+root.bind('<Return>', newEnterGame)
 root.mainloop()
