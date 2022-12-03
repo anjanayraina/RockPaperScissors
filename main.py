@@ -116,6 +116,7 @@ def playGame(val , pc_opt):
 
 # Maingame Function will bring a new window of GUI and will provide a platform to play RPS:
 def maingame():
+    global frame1
     global userscore, pcscore
     global userNameInp
     global rock, paper, scissor
@@ -158,7 +159,8 @@ def maingame():
     # Player 1 Buttons
 
     def player1Buttons():
-        rock = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7)
+        global frame1
+        rock = Button(text='Rock', font='comicsansms 14 bold', height=1, width=7 )
         rock.grid(row=2, column=0, pady=15)
         rock.bind('<Enter>', enter)
         rock.bind('<Leave>', leave)
@@ -173,6 +175,7 @@ def maingame():
         scissor.bind('<Enter>', enter2)
         scissor.bind('<Leave>', leave2)
         scissor.bind('<Button-1>', click)
+
     player1Buttons()
 
 
@@ -200,8 +203,63 @@ def maingame():
         btnclose.place(x=500, y=350)
     closeButton()
 
-
-
+    # def menu_start(self):
+    #
+    #     global pl_image, pl_paper, pl_pick, pl_rock, pl_scissors, pl_paper, pc_rock, pc_pick, pc_scissors, pc_score, pc_paper, pc_image, result_label, score_label
+    #     pl_score = 0
+    #     pc_score = 0
+    #     pc_rock = ImageTk.PhotoImage(Image.open(path1))
+    #     pc_paper = ImageTk.PhotoImage(Image.open(path2))
+    #     pc_scissors = ImageTk.PhotoImage(Image.open(path3))
+    #     pl_rock = ImageTk.PhotoImage(Image.open(path1))
+    #     pl_paper = ImageTk.PhotoImage(Image.open(path2))
+    #     pl_scissors = ImageTk.PhotoImage(Image.open(path3))
+    #     rock_i = ImageTk.PhotoImage(Image.open(path1))
+    #     paper_i = ImageTk.PhotoImage(Image.open(path2))
+    #     scissors_i = ImageTk.PhotoImage(Image.open(path3))
+    #     # tk.withdraw()
+    #     pc_pick = 0
+    #     pl_pick = 0
+    #
+    #     global game_win
+    #     game_win = root.Toplevel(self)
+    #     game_win.geometry(self.game_size)
+    #     game_win.resizable(False, False)
+    #     score_title = tk.Label(game_win, text='Score:', font=('Tahoma', 32))
+    #     score_label = tk.Label(game_win, text=f'{pl_score} : {pc_score}', font=('Tahoma', 24, 'bold'))
+    #     result_label = tk.Label(game_win, text=' ', font=('Tahoma', 32))
+    #     pc_image = tk.Label(game_win)
+    #     pl_image = tk.Label(game_win)
+    #     pc_title = tk.Label(game_win, text='PC:', font=('Tahoma', 24, 'bold'))
+    #     pl_title = tk.Label(game_win, text=f'{string}:', font=('Tahoma', 24, 'bold'))
+    #     self.rock_button = tk.Button(game_win, image=rock_i)
+    #     self.rock_button.image = rock_i
+    #     self.paper_button = tk.Button(game_win, image=paper_i)
+    #     self.paper_button.image = paper_i
+    #     self.scissors_button = tk.Button(game_win, image=scissors_i)
+    #     self.scissors_button.image = scissors_i
+    #     back_button = tk.Button(game_win, text='Menu')
+    #     playagain_button = tk.Button(game_win, text='Play again')
+    #     self.no_button = tk.Button(game_win, text='NEXT')
+    #
+    #     score_title.place(relx=0.44, rely=0.05)
+    #     score_label.place(relx=0.464, rely=0.17)
+    #     result_label.place(relx=0.405, rely=0.65)
+    #     pc_image.place(relx=0.65, rely=0.3)
+    #     pl_image.place(relx=0.09, rely=0.3)
+    #     pc_title.place(relx=0.755, rely=0.21)
+    #     pl_title.place(relx=0.18, rely=0.21)
+    #     self.rock_button.place(relwidth=0.080, relheight=0.1, relx=0.1, rely=0.8, height=150, width=150)
+    #     self.paper_button.place(relwidth=0.080, relheight=0.1, relx=0.300, rely=0.8, height=150, width=150)
+    #     self.scissors_button.place(relwidth=0.080, relheight=0.1, relx=0.500, rely=0.8, height=150, width=150)
+    #     self.no_button.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
+    #     self.rock_button['command'] = lambda: self.game_rock()
+    #     self.paper_button['command'] = lambda: self.game_paper()
+    #     self.scissors_button['command'] = lambda: self.game_scissors()
+    #     self.no_button['command'] = lambda: self.askuser()
+    #     self.no_button.config(state="disabled")
+    #     playagain_button['command'] = lambda: self.play_again()
+    #     back_button['command'] = lambda: self.close_game()
 
 
 ''' GUI Program Starting '''
