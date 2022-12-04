@@ -38,16 +38,16 @@ class MainGame(tk.Tk):
 
     def startingThemenu(self):
         string = entry.get()
-        global playerImageLoaded, pl_paper, pl_pick, playerRock, pl_scissors, pl_paper, rockImage, computerPicker, computerScissor, computerScoreCurrent, computerPaper, computerCurrentImage, resultingScore, scoringLabel
+        global playerImageLoaded, playerPaper, pl_pick, playerRock, playerScissors, playerPaper, rockImage, computerPicker, computerScissor, computerScoreCurrent, computerPaper, computerCurrentImage, resultingScore, scoringLabel
         global userScore , pcScore
         pl_score = 0
         computerScoreCurrent = 0
         rockImage = ImageTk.PhotoImage(Image.open('rock.jpeg'))
         computerPaper = ImageTk.PhotoImage(Image.open('paper.jpeg'))
         playerRock = ImageTk.PhotoImage(Image.open('rock.jpeg'))
-        pl_paper = ImageTk.PhotoImage(Image.open('paper.jpeg'))
-        pl_scissors = ImageTk.PhotoImage(Image.open('scisscors.jpeg'))
-        rock_i = ImageTk.PhotoImage(Image.open('rock.jpeg'))
+        playerPaper = ImageTk.PhotoImage(Image.open('paper.jpeg'))
+        playerScissors = ImageTk.PhotoImage(Image.open('scisscors.jpeg'))
+        mainRockImage = ImageTk.PhotoImage(Image.open('rock.jpeg'))
         paper_i = ImageTk.PhotoImage(Image.open('paper.jpeg'))
         scissors_i = ImageTk.PhotoImage(Image.open('scisscors.jpeg'))
         computerScissor = ImageTk.PhotoImage(Image.open('scisscors.jpeg'))
@@ -68,12 +68,12 @@ class MainGame(tk.Tk):
         resultingScore = tk.Label(winningGameActivate, text=' ', font=('italic', 32))
         pc_title = tk.Label(winningGameActivate, text='PC:', font=('italic', 24, 'bold'))
         pl_title = tk.Label(winningGameActivate, text=f'{string}:', font=('italic', 24, 'bold'))
-        self.rock_button = tk.Button(winningGameActivate, image=rock_i)
-        self.rock_button.image = rock_i
+        self.rock_button = tk.Button(winningGameActivate, image=mainRockImage)
+        self.rock_button.image = mainRockImage
         self.paper_button = tk.Button(winningGameActivate, image=paper_i)
         self.paper_button.image = paper_i
-        self.scissors_button = tk.Button(winningGameActivate, image=scissors_i)
-        self.scissors_button.image = scissors_i
+        self.mainScissorButton = tk.Button(winningGameActivate, image=scissors_i)
+        self.mainScissorButton.image = scissors_i
         back_button = tk.Button(winningGameActivate, text='Main Menu')
         playagain_button = tk.Button(winningGameActivate, text='Play again')
         self.no_button = tk.Button(winningGameActivate, text='Next')
@@ -89,12 +89,12 @@ class MainGame(tk.Tk):
 
         self.no_button.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
         self.paper_button['command'] = lambda: self.callPaper()
-        self.scissors_button['command'] = lambda: self.game_scissors()
+        self.mainScissorButton['command'] = lambda: self.game_scissors()
         self.rock_button.place(relwidth=0.080, relheight=0.1, relx=0.1, rely=0.8, height=150, width=150)
         self.paper_button.place(relwidth=0.080, relheight=0.1, relx=0.300, rely=0.8, height=150, width=150)
         self.rock_button['command'] = lambda: self.callRock()
 
-        self.scissors_button.place(relwidth=0.080, relheight=0.1, relx=0.500, rely=0.8, height=150, width=150)
+        self.mainScissorButton.place(relwidth=0.080, relheight=0.1, relx=0.500, rely=0.8, height=150, width=150)
         self.no_button['command'] = lambda: self.firstScreen()
         self.no_button.config(state="disabled")
         playagain_button['command'] = lambda: self.playAgain()
@@ -128,12 +128,12 @@ class MainGame(tk.Tk):
         asking.pack(side=tk.TOP, pady=100)
         no = 'no'
         yes = 'yes'
-        no_button2 = tk.Button(winningGameActivate2, text=no)
-        yes_button = tk.Button(winningGameActivate2, text=yes)
-        yes_button.place(relwidth=0.12, relheight=0.07, relx=0.2, rely=0.81)
-        yes_button['command'] = lambda: self.isGameRunning()
-        no_button2.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
-        no_button2['command'] = lambda: self.gameClosing2()
+        mainNoButton = tk.Button(winningGameActivate2, text=no)
+        mainYesButton = tk.Button(winningGameActivate2, text=yes)
+        mainYesButton.place(relwidth=0.12, relheight=0.07, relx=0.2, rely=0.81)
+        mainYesButton['command'] = lambda: self.isGameRunning()
+        mainNoButton.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
+        mainNoButton['command'] = lambda: self.gameClosing2()
         self.gameClosing()
 
     def getRandomInt(self):
@@ -181,8 +181,8 @@ class MainGame(tk.Tk):
         # nonlocal pl_score, computerScoreCurrent, pl_pick, computerPicker, rounds
         global userScore, computerScore
         pl_pick = 0
-        playerImageLoaded.configure(image=pl_paper)
-        playerImageLoaded.image = pl_paper
+        playerImageLoaded.configure(image=playerPaper)
+        playerImageLoaded.image = playerPaper
         computerPicker = self.getRandomInt()
 
         if computerPicker == 1:
@@ -214,7 +214,7 @@ class MainGame(tk.Tk):
         self.no_button.config(state="active")
 
     def scissorConfig(self):
-        self.scissors_button.config()
+        self.mainScissorButton.config()
 
     def paperConfig(self):
         self.paper_button.config()
@@ -232,8 +232,8 @@ class MainGame(tk.Tk):
         # nonlocal pl_score, computerScoreCurrent, pl_pick, computerPicker, rounds
         global userScore, computerScore
         pl_pick = 0
-        playerImageLoaded.configure(image=pl_scissors)
-        playerImageLoaded.image = pl_scissors
+        playerImageLoaded.configure(image=playerScissors)
+        playerImageLoaded.image = playerScissors
         computerPicker = self.getRandomInt()
 
 
