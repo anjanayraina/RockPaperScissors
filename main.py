@@ -74,24 +74,26 @@ class MainGame(tk.Tk):
         self.paper_button.image = paper_i
         self.scissors_button = tk.Button(winningGameActivate, image=scissors_i)
         self.scissors_button.image = scissors_i
-        back_button = tk.Button(winningGameActivate, text='Menu')
+        back_button = tk.Button(winningGameActivate, text='Main Menu')
         playagain_button = tk.Button(winningGameActivate, text='Play again')
-        self.no_button = tk.Button(winningGameActivate, text='NEXT')
+        self.no_button = tk.Button(winningGameActivate, text='Next')
 
         score_title.place(relx=0.44, rely=0.05)
+        pc_title.place(relx=0.755, rely=0.21)
         scoringLabel.place(relx=0.464, rely=0.17)
+        playerImageLoaded.place(relx=0.09, rely=0.3)
+
         resultingScore.place(relx=0.405, rely=0.65)
         computerCurrentImage.place(relx=0.65, rely=0.3)
-        playerImageLoaded.place(relx=0.09, rely=0.3)
-        pc_title.place(relx=0.755, rely=0.21)
         pl_title.place(relx=0.18, rely=0.21)
 
         self.no_button.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
-        self.rock_button['command'] = lambda: self.callRock()
         self.paper_button['command'] = lambda: self.callPaper()
         self.scissors_button['command'] = lambda: self.game_scissors()
         self.rock_button.place(relwidth=0.080, relheight=0.1, relx=0.1, rely=0.8, height=150, width=150)
         self.paper_button.place(relwidth=0.080, relheight=0.1, relx=0.300, rely=0.8, height=150, width=150)
+        self.rock_button['command'] = lambda: self.callRock()
+
         self.scissors_button.place(relwidth=0.080, relheight=0.1, relx=0.500, rely=0.8, height=150, width=150)
         self.no_button['command'] = lambda: self.firstScreen()
         self.no_button.config(state="disabled")
@@ -122,10 +124,12 @@ class MainGame(tk.Tk):
         winningGameActivate2 = tk.Toplevel(self)
         winningGameActivate2.geometry(self.game_size)
         winningGameActivate2.resizable(False, False)
-        asking = tk.Label(winningGameActivate2, text="Do you want to continue the game?", font=("Courier 22 bold"))
+        asking = tk.Label(winningGameActivate2, text="Do you want to continue the game?", font=("italic 22 bold"))
         asking.pack(side=tk.TOP, pady=100)
-        no_button2 = tk.Button(winningGameActivate2, text='NO')
-        yes_button = tk.Button(winningGameActivate2, text='YES')
+        no = 'no'
+        yes = 'yes'
+        no_button2 = tk.Button(winningGameActivate2, text=no)
+        yes_button = tk.Button(winningGameActivate2, text=yes)
         yes_button.place(relwidth=0.12, relheight=0.07, relx=0.2, rely=0.81)
         yes_button['command'] = lambda: self.isGameRunning()
         no_button2.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
