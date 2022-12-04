@@ -177,7 +177,7 @@ class MainGame(tk.Tk):
         pl_pick = 0
         pl_image.configure(image=pl_paper)
         pl_image.image = pl_paper
-        pc_pick = random.randint(0, 2)
+        pc_pick = self.getRandomInt()
 
         if pc_pick == 1:
 
@@ -214,7 +214,7 @@ class MainGame(tk.Tk):
         pl_pick = 0
         pl_image.configure(image=pl_scissors)
         pl_image.image = pl_scissors
-        pc_pick = random.randint(0, 2)
+        pc_pick = self.getRandomInt()
 
         if pc_pick == 2:
 
