@@ -128,8 +128,8 @@ class MainGame(tk.Tk):
         asking.pack(side=tk.TOP, pady=100)
         no = 'no'
         yes = 'yes'
-        mainNoButton = tk.Button(winningGameActivate2, text=no)
-        mainYesButton = tk.Button(winningGameActivate2, text=yes)
+        mainNoButton = tk.Button(winningGameActivate2, text= no)
+        mainYesButton = tk.Button(winningGameActivate2, text = yes)
         mainYesButton.place(relwidth=0.12, relheight=0.07, relx=0.2, rely=0.81)
         mainYesButton['command'] = lambda: self.isGameRunning()
         mainNoButton.place(relwidth=0.12, relheight=0.07, relx=0.82, rely=0.81)
@@ -152,13 +152,13 @@ class MainGame(tk.Tk):
 
             computerCurrentImage.configure(image=rockImage)
             computerCurrentImage.image = rockImage
-            resultingScore['text'] = 'MainGame tied'
+            resultingScore['text'] = self.returnGameTied()
 
         elif computerPicker == self.return1():
 
             computerCurrentImage.configure(image=computerPaper)
             computerCurrentImage.image = computerPaper
-            resultingScore['text'] = 'You lost!'
+            resultingScore['text'] = self.returnLost()
             # computerScoreCurrent+=1
             computerScore+=1
 
@@ -166,7 +166,7 @@ class MainGame(tk.Tk):
 
             computerCurrentImage.configure(image=computerScissor)
             computerCurrentImage.image = computerScissor
-            resultingScore['text'] = 'You won!'
+            resultingScore['text'] = self.returnWin()
             # pl_score+=1
             userScore+=1
 
@@ -185,17 +185,17 @@ class MainGame(tk.Tk):
         playerImageLoaded.image = playerPaper
         computerPicker = self.getRandomInt()
 
-        if computerPicker == 1:
+        if computerPicker == self.return1:
 
             computerCurrentImage.configure(image=computerPaper)
             computerCurrentImage.image = computerPaper
-            resultingScore['text'] = 'MainGame tied'
+            resultingScore['text'] = self.returnGameTied()
 
-        elif computerPicker == 2:
+        elif computerPicker == self.return2():
 
             computerCurrentImage.configure(image=computerScissor)
             computerCurrentImage.image = computerScissor
-            resultingScore['text'] = 'You lost!'
+            resultingScore['text'] = self.returnLost()
             # computerScoreCurrent+=1
             computerScore += 1
 
@@ -203,7 +203,7 @@ class MainGame(tk.Tk):
 
             computerCurrentImage.configure(image=rockImage)
             computerCurrentImage.image = rockImage
-            resultingScore['text'] = 'You won!'
+            resultingScore['text'] = self.returnWin()
             # pl_score+=1
             userScore += 1
 
@@ -227,6 +227,12 @@ class MainGame(tk.Tk):
         return 1
     def return0(self):
         return 0
+    def returnLost(self):
+        return 'You Lost'
+    def returnWin(self):
+        return 'You Won'
+    def returnGameTied(self):
+        return 'Game Tied'
     def game_scissors(self):
 
         # nonlocal pl_score, computerScoreCurrent, pl_pick, computerPicker, rounds
@@ -242,7 +248,7 @@ class MainGame(tk.Tk):
 
             computerCurrentImage.configure(image=rockImage)
             computerCurrentImage.image = rockImage
-            resultingScore['text'] = 'You lost!'
+            resultingScore['text'] = self.returnLost()
             # computerScoreCurrent+=1
             computerScore += 1
 
@@ -250,13 +256,13 @@ class MainGame(tk.Tk):
 
             computerCurrentImage.configure(image=computerScissor)
             computerCurrentImage.image = computerScissor
-            resultingScore['text'] = 'MainGame tied'
+            resultingScore['text'] = self.returnGameTied()
 
         else:
 
             computerCurrentImage.configure(image=computerPaper)
             computerCurrentImage.image = computerPaper
-            resultingScore['text'] = 'You won!'
+            resultingScore['text'] = self.returnWin()
             # pl_score+=1
             userScore+=1
 
